@@ -1,0 +1,78 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <a class="btn btn-outline-dark mb-3" href="{% url 'danh_sach_san_pham' %}">&#x2190;Trở về</a>
+                <div class="card">
+                    <div class="card-header">Thêm sản phẩm</div>
+                    <div class="card-body">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Tên sản phẩm</label>
+                                <div class="col-md-6">
+                                    {{ form.ten }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Ảnh</label>
+                                <div class="col-md-6">
+                                    {{ form.image }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Mô tả</label>
+                                <div class="col-md-6">
+                                    {{ form.mo_ta }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Loại sản phẩm</label>
+                                <div class="col-md-6">
+                                    {{ form.loai_hang }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Giá</label>
+                                <div class="col-md-6">
+                                    {{ form.gia }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Nhà cung cấp</label>
+                                <div class="col-md-6">
+                                    {{ form.nha_cung_cap }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Nhà sản xuất</label>
+                                <div class="col-md-6">
+                                    {{ form.nha_san_xuat }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Đơn vị</label>
+                                <div class="col-md-6">
+                                    {{ form.don_vi }}
+                                </div>
+                            </div>
+                                <button type="submit" name="save-invoice" value="true" class="btn btn-success">Lưu</button>
+                                <a href="{% url 'add_nha_cung_cap' %}" class="btn btn-primary">Thêm nhà cung cấp</a>
+                                <a href="{% url 'add_nha_san_xuat' %}" class="btn btn-primary">Thêm nhà sản xuất</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<br>
+{% endblock %}

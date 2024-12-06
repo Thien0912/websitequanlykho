@@ -1,0 +1,105 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tổng quan</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+<body>
+    <br>
+    <br>
+    <br>
+    <div class="container mt-4"></div>
+        <h1 class="text-center">Tổng quan</h1>
+        <br>
+        <div class="row">
+    
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Doanh thu
+                    </div>
+                    <div class="card-body">
+                        <h5>{{ doanh_thu|intcomma }} đ</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Nhập/Xuất
+                    </div>
+                    <div class="card-body">
+                        <img src="data:image/png;base64,{{ chart }}" alt="Sales Chart" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <div class="me-5 d-none d-lg-block">
+        <span>Kết nối với chúng tôi:</span>
+      </div>
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </section>
+
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <div class="row mt-3">
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>KHO HÀNG THÔNG MINH
+            </h6>
+            <p>
+              Chào mừng đến với phiên làm việc hôm nay! Chúc các nhân viên có một ngày làm việc hiệu quả và thành công.
+            </p>
+          </div>
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">Liên hệ</h6>
+            <p><i class="fas fa-home me-3"></i> Cần Thơ, Việt Nam </p>
+            <p>
+              <i class="fas fa-envelope me-10"></i>
+              khohangthongminh@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 84 786 838 772</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © Copyright 2024
+    </div>
+  </footer>
+</html>
+{% endblock %}

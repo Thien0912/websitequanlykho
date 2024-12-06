@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card mb-3" style="max-width: 540px;">
+        <a class="btn btn-outline-dark mb-3" href="{% url 'danh_sach_san_pham' %}">&#x2190;Trở về</a>
+        <div class="card-header p-4">
+            THÔNG TIN SẢN PHẨM
+          </div>
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ product.ImageURL }}" class="card-img" alt="{{ product.ten }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.ten}}</h5>
+                    <p class="card-text">{{product.mo_ta}}</p>
+                    <p class="card-text"><small class="text-muted">Nhà cung cấp: {{product.nha_cung_cap}}</small></p>
+                    <p class="card-text"><small class="text-muted">Nhà sản xuất: {{product.nha_san_xuat}}</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Thông tin tồn kho</h5>
+            <br>
+            <p class="card-text">Số lượng tồn kho: {{total_quantity}} {{product.loai_hang}}</p>
+            <p class="card-text">Giá: {{product.gia|intcomma}}đ</p>
+            <a href="{% url 'edit_san_pham' product.id %}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+            <form method="post" action="{% url 'del_san_pham' product.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

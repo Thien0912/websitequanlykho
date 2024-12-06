@@ -1,0 +1,77 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <main class="my-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <a class="btn btn-outline-dark mb-3" href="{% url 'danh_sach_phieu_xuat' %}">&#x2190;Trở về</a>
+                    <div class="card">
+                        <div class="card-header">Thêm phiếu xuất</div>
+                        <div class="card-body">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label text-md-right">Số lượng chi tiết xuất kho</label>
+                                    <div class="col-md-6">
+                                        <input type="number" name="num-forms" id="id_num-forms" min="1" value="{{ num_forms }}">
+                                        <button type="submit" name="update-forms" value="true" class="btn btn-primary btn-sm">Xác nhận</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                {{ formset.management_form }}
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label text-md-right">Khách hàng</label>
+                                    <div class="col-md-6">
+                                        {{ form.khach_hang }}
+                                    </div>
+                                </div>
+                                {% for form in formset %}
+                                <div class="form-group row">
+                                    <hr>
+                                    <label class="col-md-3 col-form-label text-md-right">Sản phẩm</label>
+                                    <div class="col-md-9">
+                                        {{ form.san_pham }}
+                                    </div>
+                                    <label class="col-md-3 col-form-label text-md-right">Số lượng</label>
+                                    <div class="col-md-9">
+                                        {{ form.so_luong }}
+                                    </div>
+                                    <label class="col-md-3 col-form-label text-md-right">Đơn vị</label>
+                                    <div class="col-md-9">
+                                        {{ form.don_vi }}
+                                    </div>
+                                    <label class="col-md-3 col-form-label text-md-right">Kho</label>
+                                    <div class="col-md-9">
+                                        {{ form.kho }}
+                                    </div>
+                                    {% if form.non_field_errors %}
+                                        <div class="col-md-9 offset-md-3 text-center text-danger">
+                                            {{ form.non_field_errors }}
+                                        </div>
+                                    {% endif %}
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                <button type="submit" name="save-invoice" value="true" class="btn btn-success">Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <br>
+    
+{% endblock %}

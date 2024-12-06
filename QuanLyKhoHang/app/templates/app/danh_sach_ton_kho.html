@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+<br>
+<br>
+<div class="container mt-4">
+    <a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Về trang chủ</a>
+    <h2 class="text-center">Danh sách tồn kho</h2>
+    <form method="GET" action="{% url 'danh_sach_ton_kho' %}" class="form-inline mb-3">
+        <input type="text" name="search" class="form-control mr-sm-2" placeholder="Tìm kiếm sản phẩm" value="{{ request.GET.search }}" style="width:90%;float:left">
+        <button type="submit" class="btn btn-primary" style="width: 10% ;">Tìm kiếm</button>
+    </form>
+    <div>
+        <form method="get" action="{% url 'danh_sach_ton_kho' %}">
+            <label for="sort_by">Sắp xếp theo:</label>
+            <select id="sort_by" name="sort_by">
+                <option value="">Chọn...</option>
+                <option value="so_luong_tang">Số lượng tăng dần</option>
+                <option value="so_luong_giam">Số lượng giảm dần</option>
+            </select>
+            <button type="submit">Sắp xếp</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th></th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Tên kho</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in tonkho %}
+                <tr>
+                    <td><img class="img-thumbnail" src="{{ item.san_pham.ImageURL }}" alt="{{ product.ten }}" width="100"></td>
+                    <td>{{ item.san_pham }}</td>
+                    <td>{{ item.so_luong }}</td>
+                    <td>{{ item.kho }}</td>
+                    <td>
+                        <a href="{% url 'edit_ton_kho' item.id %}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+Hướng dẫn cài đặt trang web bán quản lý kho hàng:
+- Bước 1: Cài đặt Visual Studio Code.
+- Bước 2: Cài đặt MySQL.
+- Bước 3: Chạy các lệnh trong file doan2.sql
+- Bước 4: Vào Visual Studio Code, mở folder QuanLyKhoHang
+- Bước 5: Trong Visual Studio Code, chọn Terminal -> New Terminal, chạy lệnh "pip install -r requirements.txt" trong hộp thoại Terminal để tải các thư viện.
+- Bước 6: Mở Terminal, chạy lệnh "python manage.py createsuperuser" để tạo tài khoản admin và ghi đầy đủ thông tin admin
+- Bước 7: Mở Terminal, chạy lệnh "python manage.py create_nhanvien_profile".
+- Bước 8: Mở Terminal, chạy lệnh "python manage.py runserver" để mở trang web.

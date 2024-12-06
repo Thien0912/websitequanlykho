@@ -1,0 +1,6 @@
+cài thư viện:
+    pip install -r requirements.txt
+trang admin:
+    http://127.0.0.1:8000/admin/
+
+    python manage.py create_nhanvien_profile

@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% block content %}
+<br>
+<br>
+<br>
+
+<div class="container mt-4">
+  <a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Về trang chủ</a>
+  <h2 class="text-center">Danh sách phiếu xuất kho</h2>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Nhân viên</th>
+        <th>Khách hàng</th>
+        <th>Ngày tạo</th>
+        <th>Tổng tiền</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for invoice in invoices %}
+      <tr>
+        <td>{{ invoice.nhan_vien }}</td>
+        <td>{{ invoice.khach_hang }}</td>
+        <td>{{ invoice.ngay_tao }}</td>
+        <td>{{ invoice.total_price|intcomma }}</td>
+        <td>
+          <a href="{% url 'phieu_xuat_detail' invoice.id %}" class="btn btn-primary btn-sm">Xem chi tiết</a>
+          <form action="{% url 'del_phieu_xuat' invoice.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<a href="{% url 'add_phieu_xuat' %}" class="btn btn-primary">Thêm phiếu xuất kho</a>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+<br>
+<br>
+<div class="container mt-4">
+    <a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Về trang chủ</a>
+    <h2 class="text-center">Danh sách sản phẩm</h2>
+    <form method="GET" action="{% url 'danh_sach_san_pham' %}" class="form-inline mb-3">
+        <input type="text" name="search" class="form-control mr-sm-2" placeholder="Tìm kiếm sản phẩm" value="{{ request.GET.search }}" style="width:90%;float:left">
+        <button type="submit" class="btn btn-primary" style="width: 10% ;">Tìm kiếm</button>
+    </form>
+    <div>
+        <form method="get" action="{% url 'danh_sach_san_pham' %}">
+            <label for="sort_by">Sắp xếp theo:</label>
+            <select id="sort_by" name="sort_by">
+                <option value="">Chọn...</option>
+                <option value="gia_tang">Giá tăng dần</option>
+                <option value="gia_giam">Giá giảm dần</option>
+            </select>
+            <button type="submit">Sắp xếp</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th></th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Loại hàng</th>
+                <th>Nhà cung cấp</th>
+                <th>Nhà sản xuất</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td><img class="img-thumbnail" src="{{ product.ImageURL }}" alt="{{ product.ten }}" width="100"></td>
+                <td>{{ product.ten }}</td>
+                <td>{{ product.gia|intcomma }}đ</td>
+                <td>{{ product.loai_hang }}</td>
+                <td>{{ product.nha_cung_cap }}</td>
+                <td>{{ product.nha_san_xuat }}</td>
+                <td>
+                    <a href="{% url 'san_pham_detail' product.id %}" class="btn btn-info btn-sm">Xem</a>
+                    <a href="{% url 'edit_san_pham' product.id %}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                    <form method="post" action="{% url 'del_san_pham' product.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_san_pham' %}" class="btn btn-primary mb-3">Thêm sản phẩm</a>
+</div>
+{% endblock %}

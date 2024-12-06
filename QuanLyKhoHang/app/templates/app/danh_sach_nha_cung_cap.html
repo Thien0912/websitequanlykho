@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="container mt-4">
+    <a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Về trang chủ</a>
+    <h2 class="text-center">Danh sách nhà cung cấp</h2>
+    <form method="GET" action="{% url 'danh_sach_nha_cung_cap' %}" class="form-inline mb-3">
+        <input type="text" name="search" class="form-control mr-sm-2" placeholder="Tìm kiếm nhà cung cấp" value="{{ request.GET.search }}" style="width:90%;float:left">
+        <button type="submit" class="btn btn-primary" style="width: 10% ;">Tìm kiếm</button>
+    </form>
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th>Điện thoại</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.ten }}</td>
+                <td>{{ supplier.dia_chi }}</td>
+                <td>{{ supplier.email }}</td>
+                <td>{{ supplier.dien_thoai }}</td>
+                <td>
+                    <a href="{% url 'edit_nha_cung_cap' supplier.id %}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                    <form method="post" action="{% url 'del_nha_cung_cap' supplier.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_nha_cung_cap' %}" class="btn btn-primary">Thêm nhà cung cấp</a>
+</div>
+{% endblock %}

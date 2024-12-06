@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <a class="btn btn-outline-dark mb-3" href="{% url 'danh_sach_san_pham' %}">&#x2190;Trở về</a>
+                <div class="card">
+                    <div class="card-header">Sửa tồn kho</div>
+                    <div class="card-body">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Tên sản phẩm</label>
+                                <div class="col-md-6">
+                                    {{ form.san_pham }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label text-md-right">Số lượng</label>
+                                <div class="col-md-6">
+                                    {{ form.so_luong }}
+                                </div>
+                            </div>
+                            {% if form.non_field_errors %}
+                                <div class="col-md-9 offset-md-3 text-center text-danger">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+                                <button type="submit" name="save-invoice" value="true" class="btn btn-success">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<br>
+{% endblock %}
